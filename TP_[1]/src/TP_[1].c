@@ -111,6 +111,7 @@ int main(){
 
     system("cls");
     printf("\n\n Hasta luego! :D\n\n");
+    system("pause");
 
 	return EXIT_SUCCESS;
 }

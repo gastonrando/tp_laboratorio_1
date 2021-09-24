@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "funcionesRando.h"
 
 /// @param mensaje mensaje asignado en el main e impreso en el printf de la funcion

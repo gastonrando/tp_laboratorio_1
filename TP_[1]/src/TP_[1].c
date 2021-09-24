@@ -2,21 +2,20 @@
  ============================================================================
  Name        : TP_[1].c
  Author      : Rando Gaston
- Version     : 1.0.0
+ Version     : 2.0.0
  Copyright   : Pendiente
  Description : Calculadora 2 variables
  ============================================================================
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "funcionesRando.h"
 
 int main(){
 
 
 	setbuf(stdout, NULL);
-	puts("!!!Calculadora!!!\n"); /* prints !!!Calculadora!!! */
+	puts("\n\n!!!Calculadora 2.0.0!!!\n"); /* prints !!!Calculadora!!! */
     int opcion, num1, num2, flagNum1=0,flagNum2=0, flagEcuaciones=0;
     int resultadoSuma, resultadoResta, errorDivision, resultadoMultiplicar;
     long long int factorialX, factorialY;
@@ -28,12 +27,12 @@ int main(){
 
             case 1:
                 flagNum1=1;
-                num1=ingresarEntero("Ingrese el primer operador: \n");
+                num1=ingresarEntero("\nIngrese el primer operador: \n");
             break;
 
             case 2:
                 flagNum2=1;
-                num2=ingresarEntero("Ingrese el segundo operador: \n");
+                num2=ingresarEntero("\nIngrese el segundo operador: \n");
             break;
 
             case 3:
@@ -48,7 +47,7 @@ int main(){
                 }
 
                 else{
-                    printf("No ingreso todos los operadores\n");
+                    printf("\nNo ingreso todos los operadores\n\n");
 
                 }
             break;
@@ -85,13 +84,13 @@ int main(){
 
                     }
                     else{
-                        printf("No realizo las operaciones matematicas!\n");
+                        printf("\nNo realizo las operaciones matematicas!\n\n");
 
                     }
                 }
 
 				else{
-					printf("No ingreso todos los operadores\n");
+					printf("\nNo ingreso todos los operadores\n\n");
 				}
             break;
 

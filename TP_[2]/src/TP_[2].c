@@ -99,5 +99,6 @@ int main(){
 	}while(seguir == 's');
 //addEmployees(&list); //funcion para agregar empleados
 
+	return EXIT_SUCCESS;
 }
 

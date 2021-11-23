@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,7 +10,6 @@ Employee* employee_new()
 	Employee* nuevoEmpleado = (Employee*) malloc(sizeof(Employee));
 	if(nuevoEmpleado != NULL)
 	{
-	    //esto inicializa las variables. cuando encuentra un null puede ser que no encuentra espacio! Por eso daria NULL
 		nuevoEmpleado->id = 0;
 		strcpy(nuevoEmpleado->nombre, "");
 		nuevoEmpleado->horasTrabajadas = 0;
@@ -158,7 +156,9 @@ int menu()
 {
     int opcion;
 
-    printf("     *** ABM EMPLEADOS ***\n");
+    printf("     **************************\n");
+    printf("     **     ABM EMPLEADOS    **\n");
+    printf("     **************************\n");
     printf("  1- Cargar los datos de los empleados desde el archivo data.csv (modo texto)\n");
     printf("  2- Cargar los datos de los empleados desde el archivo data.bin (modo binario)\n");
     printf("  3- Alta de empleado\n");
@@ -177,7 +177,7 @@ int menu()
 }
 
 
-int mostrarEmpleado(Employee* employee)
+int showEmployee(Employee* employee)
 {
     int todoOk = 0;
     int id;
@@ -241,12 +241,14 @@ int buscarEmpleadoId(LinkedList* pArrayListEmployee, int id)
     return indice;
 }
 
-int menuModificar()
+int menuEdit()
 {
     int opcion;
 
     printf("\n");
-    printf("     *** MENU DE MODIFICACION ***\n");
+    printf("     **************************\n");
+    printf("     ** MENU DE MODIFICACION **\n");
+    printf("     **************************\n");
     printf("  1- MODIFICAR NOMBRE\n");
     printf("  2- MODIFICAR HORAS-TRABAJADAS\n");
     printf("  3- MODIFICAR SUELDO\n");
@@ -259,7 +261,7 @@ int menuModificar()
 }
 
 
-int menuOrdenamiento()
+int menuSort()
 {
     int opcion;
 

@@ -25,12 +25,12 @@ int main(){
 
 
 	Employee list [QTY_EMPLOYEES];
-	Employee unEmployee;
+	//Employee unEmployee;
 	initEmployees(list, QTY_EMPLOYEES);
 	int nextId = 1;
 	int flag = 0;
 	char seguir = 's';
-	system("cls");
+	//system("cls");
 	do{
 
 		switch(menu()){ //opciones del tp
@@ -94,7 +94,7 @@ int main(){
 			break;
 
 		}
-		system("pause");
+		//system("pause");
 	}while(seguir == 's');
 //addEmployees(&list); //funcion para agregar empleados
 

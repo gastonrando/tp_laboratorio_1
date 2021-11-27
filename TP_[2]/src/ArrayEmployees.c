@@ -18,7 +18,7 @@ int menu(){
 
 	int option;
 
-	system("cls");
+	//system("cls");
 	printf("---------------------------------------------\n");
 	printf("                  ABM PERSONA      \n");
 	printf("---------------------------------------------\n");
@@ -120,7 +120,7 @@ int addEmployee(Employee* list, int len, int* id){
 	            do{
 	            printf("Ingrese Salario: ");
 
-	            }while(getFloat(&salary)==-1);
+	            }while(getFloat(&salary)==-1 || salary<0);
 	        	list[index].salary = salary;
 	            puts("---------------------------------------");
 
@@ -218,7 +218,7 @@ int modifyEmployee(Employee list[], int len){
 					 case 3:
 						 do{
 							 printf("ingrese nuevo salario: ");
-						 }while(getFloat(&auxSalary)==-1);
+						 }while(getFloat(&auxSalary)==-1 || auxSalary<0);
 						 list[index].salary = auxSalary;
 						 break;
 					 case 4:
@@ -303,7 +303,7 @@ int menuModifyEmployee(){
 	int option;
 
 
-	system("cls");
+	//system("cls");
 
 	printf("---------------------------------------------------\n");
 	printf("                Menu modificacion    \n");
@@ -427,7 +427,7 @@ int showEmployees(Employee list[], int len) {
 
     int todoOk=0;
     if(list !=NULL && len > 0){
-        system("cls");
+       // system("cls");
         printf("%36s\n", "** Lista de empleados **");
         printf("------------------------------------------------\n");
         printf(" ID    Nombre     Apellido   Sueldo     Sector \n");

@@ -23,4 +23,16 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/miBiblioteca.c</name>
+			<type>1</type>
+			<location>E:/Tecnicatura de programacion/1er cuatrimestre/Programacion y Laboratorio/tp_laboratorio_1/TP_[2]/src/miBiblioteca.c</location>
+		</link>
+		<link>
+			<name>src/miBiblioteca.h</name>
+			<type>1</type>
+			<location>E:/Tecnicatura de programacion/1er cuatrimestre/Programacion y Laboratorio/tp_laboratorio_1/TP_[2]/src/miBiblioteca.h</location>
+		</link>
+	</linkedResources>
 </projectDescription>

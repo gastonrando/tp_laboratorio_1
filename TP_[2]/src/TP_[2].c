@@ -24,8 +24,8 @@ int main(){
 	setbuf(stdout, NULL);
 
 
-	Employee unEmployee;
 	Employee list [QTY_EMPLOYEES];
+	Employee unEmployee;
 	initEmployees(list, QTY_EMPLOYEES);
 	int nextId = 1;
 	int flag = 0;
@@ -36,9 +36,8 @@ int main(){
 		switch(menu()){ //opciones del tp
 
 		case 1:
-			if(addEmployee(list, QTY_EMPLOYEES, nextId, unEmployee.name, unEmployee.lastName, unEmployee.salary, unEmployee.sector) == 0){
+			if(addEmployee(list, QTY_EMPLOYEES, &nextId) == 0){
 				printf("Alta exitosa\n");
-				nextId++;
 				flag=1;
 
 			}
@@ -67,7 +66,7 @@ int main(){
 							printf("Debe tener un empleado de alta primero\n");
 						}
 			else{
-				if(removeEmployee(list, QTY_EMPLOYEES, nextId) == 0){
+				if(removeEmployee(list, QTY_EMPLOYEES) == 0){
 							printf("\nLa baja se ha realizado con exito!\n");
 
 						}

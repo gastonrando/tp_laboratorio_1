@@ -10,6 +10,7 @@
 #include "ArrayEmployees.h"
 #include <ctype.h>
 #include <string.h>
+#include "miBiblioteca.h"
 #define QTY_EMPLOYEES 1000
 #define CHAR_LEN 51
 
@@ -65,12 +66,18 @@ int searchFree(Employee list[], int len){
 	return index;
 }
 
-int addEmployee(Employee* list, int len, int id, char name[], char lastName[], float salary, int sector){
+int addEmployee(Employee* list, int len, int* id){
 
 	    int todoOk = -1;
 	    int index;
 
-	    Employee auxEmployee;
+	    char name[51];
+	    char lastName[51];
+	    float salary;
+	    int sector;
+
+
+	    //Employee auxEmployee;
 
 
 	    if (list != NULL && len > 0)
@@ -88,34 +95,42 @@ int addEmployee(Employee* list, int len, int id, char name[], char lastName[], f
 	        else
 	        {
 
-	        	auxEmployee.id = id;
 
-	            printf("Ingrese nombre: ");
+	        	list[index].id= *id;
+	        	(*id)++;
+
+	        	do{
+
+	        	printf("Ingrese nombre: ");
 	            fflush(stdin);
 	            gets(name);
-	            strcpy(auxEmployee.name,name);
-	            puts("---------------------------------------");
+	        	} while(validarCadena(name));
+	        	puts("---------------------------------------");
+	        	strcpy(list[index].name,name);
 
-	            printf("Ingrese apellido: ");
+	        	do{
+	        	printf("Ingrese apellido: ");
 	            fflush(stdin);
 	            gets(lastName);
-	            strcpy(auxEmployee.lastName,lastName);
+	        	}while(validarCadena(lastName));
+	            strcpy(list[index].lastName,lastName);
 	            puts("---------------------------------------");
+
 
 	            do{
-	            printf("Ingrese el salario (mayor a 0): $ ");
-	            scanf("%f", &salary);
-	            auxEmployee.salary = salary;
-	            } while(auxEmployee.salary<0);
+	            printf("Ingrese Salario: ");
+
+	            }while(getFloat(&salary)==-1);
+	        	list[index].salary = salary;
 	            puts("---------------------------------------");
 
-	            printf("Ingrese el sector: ");
-	            scanf("%d",&sector);
-	            auxEmployee.sector = sector;
+
+	            utn_getInt(&sector, "Ingrese el sector: ", "Error, ");
+	            list[index].sector = sector;
 	            puts("---------------------------------------");
 
-	            auxEmployee.isEmpty = 0;
-	            list[index] = auxEmployee;
+	            list[index].isEmpty = 0;
+
 
 	        }
 	        todoOk = 0;
@@ -153,48 +168,63 @@ int modifyEmployee(Employee list[], int len){
 		printf("--------------------------------------------------------------\n");
 		printf("                        MODIFICAR EMPLEADO                       \n");
 		printf("--------------------------------------------------------------\n\n");
-		printf("ingrese id: ");
-		scanf("%d", &id);
 
+		showEmployees(list, len);
+		utn_getInt(&id, "Ingrese ID numerico: ", "Error, ");
 		index = findEmployeeById(list, len, id);
 
 		if(index == -1){
 
-			printf("\n no existe una persona con id %d", id);
+			printf("\n no existe una persona con id %d ", id);
 
 		}
 		else{
 			showEmployee(list[index]);
-			printf("Desdea modificarla? s/n: ");
+			printf("Desdea modificar al empleado? s/n: ");
 			fflush(stdin);
 			scanf("%c", &confirm);
+
+			while(validateChar(confirm, 's', 'n')==-1){
+
+					printf("Opcion incorrecta...Reintentelo nuevamente: ");
+					fflush(stdin);
+					scanf("%c", &confirm);
+				}
+
+
 
 			if(confirm == 's'){
 				do{
 				switch(menuModifyEmployee()){
 
 					 case 1:
-						 printf("ingrese nuevo nombre: ");
-						 fflush(stdin);
-						 gets(auxName);
-						 strcpy(list[index].name, auxName);
+
+						 do{
+							 printf("ingrese nuevo nombre: ");
+						 	 fflush(stdin);
+						 	 gets(auxName);
+						 	 } while(validarCadena(auxName));
+						 	 puts("---------------------------------------");
+						 	 strcpy(list[index].name,auxName);
 						 break;
 					 case 2:
-						 printf("ingrese nuevo apellido: ");
-						 fflush(stdin);
-						 gets(auxLastName);
+						 do{
+							 printf("ingrese nuevo apellido: ");
+						 	 fflush(stdin);
+						 	 gets(auxLastName);
+						 }while(validarCadena(auxLastName));
 						 strcpy(list[index].lastName, auxLastName);
 						 break;
 					 case 3:
-						 printf("ingrese nuevo salario: ");
-						 fflush(stdin);
-						 scanf("%f", &auxSalary);
+						 do{
+							 printf("ingrese nuevo salario: ");
+						 }while(getFloat(&auxSalary)==-1);
 						 list[index].salary = auxSalary;
 						 break;
 					 case 4:
-						 printf("ingrese nuevo sector: ");
-						 fflush(stdin);
-						 scanf("%d", &auxSector);
+						 utn_getInt(&auxSector, "ingrese nuevo sector: ", "Error, ");
+						 list[index].sector = auxSector;
+						 //fflush(stdin);
 						 list[index].sector = auxSector;
 						 break;
 					 case 5:
@@ -218,9 +248,10 @@ int modifyEmployee(Employee list[], int len){
 	return todoOk;
 }
 
-int removeEmployee(Employee* list, int len, int id){
+int removeEmployee(Employee* list, int len){
 	int todoOk = -1;
 	int index;
+	int id;
 	char confirm;
 
 	if(list != NULL && len > 0){
@@ -229,11 +260,8 @@ int removeEmployee(Employee* list, int len, int id){
 		printf("                        BAJA EMPLEADOS                       \n");
 		printf("--------------------------------------------------------------\n\n");
 
-
-
-		printf("Ingrese el ID del empleado que desea dar de baja: \n");
-		scanf("%d", &id);
-
+		showEmployees(list, len);
+		utn_getInt(&id, "Ingrese el ID del empleado que desea dar de baja: \n, ", "Error, ");
 		index = findEmployeeById(list, len, id);
 
 		if(index == -1){
@@ -241,9 +269,19 @@ int removeEmployee(Employee* list, int len, int id){
 		}
 		else
 		{
+
 			printf("¿Desea confirmar la baja de empleado? (s/n)");
 			fflush(stdin);
 			scanf("%c", &confirm);
+			while(validateChar(confirm, 's', 'n')==-1){
+				printf("Opcion incorrecta...Reintentelo nuevamente (s/n): ");
+				fflush(stdin);
+				scanf("%c", &confirm);
+			}
+
+			//printf("¿Desea confirmar la baja de empleado? (s/n)");
+			//fflush(stdin);
+			//scanf("%c", &confirm);
 
 			if(confirm == 's'){
 				list[index].isEmpty = 1;
@@ -331,6 +369,8 @@ int menuSortEmployees()
 	printf("1. Ordenar alfabeticamente por apelliodo y sector. \n");
 	printf("2. Ver total de salarios, promedio y cuantos empleados poseen un salario por encima del la media.\n");
 	printf("3. Volver al menu principal\n\n");
+
+
 
 	printf("Elija una opcion: ");
 	scanf("%d", &option);

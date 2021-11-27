@@ -62,7 +62,7 @@ int searchFree(Employee list[], int len);
  * @param sector sector de trabajo del empleado
  * @return
  */
-int addEmployee(Employee* list, int len, int id, char name[], char lastName[], float salary, int sector);
+int addEmployee(Employee* list, int len, int* id);
 /**
  * @fn int findEmployeeById(Employee*, int, int)
  * @brief busca empleado por numero de id
@@ -98,7 +98,7 @@ int menuModifyEmployee();
  * @param id envia la id del empleado
  * @return
  */
-int removeEmployee(Employee* list, int len, int id);
+int removeEmployee(Employee* list, int len);
 /**
  * @fn int showEmployees(Employee[], int)
  * @brief hace print en pantalla de los datos de los empleados dados de alta
